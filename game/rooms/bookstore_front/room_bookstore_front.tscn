@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://l5slqt5pr2db"]
+
+[ext_resource type="Script" path="res://game/rooms/bookstore_front/room_bookstore_front.gd" id="1_s8ikf"]
+[ext_resource type="PackedScene" uid="uid://cpwqo50hbv1mt" path="res://game/characters/detective/character_detective.tscn" id="2_bjsxo"]
+[ext_resource type="PackedScene" uid="uid://bq4rdgicds8sy" path="res://game/characters/working_class_woman/character_working_class_woman.tscn" id="3_v3fid"]
+
+[node name="RoomBookstoreFront" type="Node2D"]
+script = ExtResource("1_s8ikf")
+script_name = "BookstoreFront"
+popochiu_placeholder = null
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterDetective *" parent="Characters" instance=ExtResource("2_bjsxo")]
+position = Vector2(259, 115)
+
+[node name="CharacterWorkingClassWoman *" parent="Characters" instance=ExtResource("3_v3fid")]
+position = Vector2(97, 117)

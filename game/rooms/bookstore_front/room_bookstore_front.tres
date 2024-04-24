@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b8k1icm4q0ina"]
+
+[ext_resource type="Script" path="res://game/rooms/bookstore_front/room_bookstore_front_state.gd" id="1_jwuxr"]
+
+[resource]
+resource_name = "BookstoreFront"
+script = ExtResource("1_jwuxr")
+script_name = "BookstoreFront"
+scene = "res://game/rooms/bookstore_front/room_bookstore_front.tscn"
+visited = false
+visited_first_time = false
+visited_times = 0

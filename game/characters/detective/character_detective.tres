@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bywonj6dggymc"]
+
+[ext_resource type="Script" path="res://game/characters/detective/character_detective_state.gd" id="1_n35ih"]
+
+[resource]
+resource_name = "Detective"
+script = ExtResource("1_n35ih")
+script_name = "Detective"
+scene = "res://game/characters/detective/character_detective.tscn"

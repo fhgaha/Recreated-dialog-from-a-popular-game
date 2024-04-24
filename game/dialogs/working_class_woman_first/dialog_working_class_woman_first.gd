@@ -6,20 +6,31 @@ var asked_abt_husband 	: bool = false
 var asked_abt_children 	: bool = false
 var asked_abt_cockatoo 	: bool = false
 var watched_browsing 	: bool = false
+var ignore_click		: bool = false
 
 #region Virtual ####################################################################################
 func _on_start() -> void:
+	if ignore_click: return
 	# One can put here something to excecute before showing the dialog options.
 	# E.g. Make the PC to look at the character which it will talk to, walk to
 	# it, and say something (or make the character say something):
 	
-	#await E.play_transition(PopochiuTransitionLayer.PASS_DOWN_IN, 1)
-	#await E.wait(1)
+	#await E.play_transition(PopochiuTransitionLayer.FADE_IN, 5)
+	#var canv = E.find_child("TransitionsLayer") as CanvasLayer
+	#canv.layer = 9
+	#await E.wait(5)
 	#await E.play_transition(PopochiuTransitionLayer.PASS_DOWN_OUT, 1)
+	
+	#await ignore_click_while(func():
+		#await fade_in()
+		#await E.wait(3)
+		#await fade_out()
+	#)
 	
 	await C.player.face_clicked()
 	await C.WorkingClassWoman.say("[wave]♫ Hmm-hmm-hmm ♪[/wave]")
-	
+
+
 	if (first_time):
 		update_dialog([
 			opt("agoodone", "A good one? Point at the book"),
@@ -34,7 +45,6 @@ func _on_start() -> void:
 			opt("watchbrowse", 		"Watch her browse books"),
 		])
 	
-
 	# (!) It MUST always use an await
 	await E.get_tree().process_frame
 
@@ -258,7 +268,9 @@ func _option_selected(opt: PopochiuDialogOption) -> void:
 		"hug":
 			#come to the woman
 			#black screen
-			E.play_transition(PopochiuTransitionLayer.FADE_IN, 1)
+			await ignore_click_while(func():
+				await fade_in()
+			)
 			await C.WorkingClassWoman.say("What is happening?")
 			await C.WorkingClassWoman.say("...")
 			await C.WorkingClassWoman.say("Uh... What are you doing, officer?")
@@ -289,7 +301,9 @@ func _option_selected(opt: PopochiuDialogOption) -> void:
 			])
 		"stophug":
 			#black screen vanishes
-			E.play_transition(PopochiuTransitionLayer.FADE_IN, 1)
+			await ignore_click_while(func():
+				await fade_out()
+			)
 			await C.WorkingClassWoman.say("Right, uh...")
 			update_dialog([
 				opt("leave", "That's all for a moment. I'll let you read [Leave]")
@@ -308,6 +322,24 @@ func turn_off_opts_all():
 		if opt.visible:
 			opt.turn_off()
 	pass
+
+
+func fade_in() -> void:
+	var canv = E.find_child("TransitionsLayer") as CanvasLayer
+	canv.layer = 9
+	await E.play_transition(PopochiuTransitionLayer.FADE_IN, 1)
+
+
+func fade_out() -> void:
+	var canv = E.find_child("TransitionsLayer") as CanvasLayer
+	canv.layer = 10
+	await E.play_transition(PopochiuTransitionLayer.FADE_OUT, 1)
+
+
+func ignore_click_while(action : Callable):
+	ignore_click = true
+	await action.call()
+	ignore_click = false
 
 
 # Use this to save custom data for this PopochiuDialog when saving the game.

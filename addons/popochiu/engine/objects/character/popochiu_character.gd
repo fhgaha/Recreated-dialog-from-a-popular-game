@@ -443,6 +443,32 @@ func say(dialog: String, emo := "") -> void:
 	idle()
 
 
+func say_no_anim(dialog: String, emo := "") -> void:
+	if E.cutscene_skipped:
+		await get_tree().process_frame
+		return
+	
+	if not emo.is_empty():
+		emotion = emo
+	
+	var vo_name := _get_vo_cue(emotion)
+	if not vo_name.is_empty() and A.get(vo_name):
+		A[vo_name].play(false, global_position)
+	
+	C.character_spoke.emit(self, dialog)
+	
+	await G.dialog_line_finished
+	
+	# Stop the voice if it is still playing (feature #202)
+	# Fix: Check if the vo_name is valid in order to stop it
+	if not vo_name.is_empty() and A[vo_name].is_playing():
+		A[vo_name].stop(0.3)
+	
+	emotion = ''
+	idle()
+
+
+
 ## Calls [method _play_grab] and waits until the [signal grab_done] is emitted, then goes back to
 ## [method idle].[br][br]
 ## [i]This method is intended to be used inside a [method Popochiu.queue] of instructions.[/i]
@@ -666,6 +692,37 @@ func play_animation(animation_label: String, animation_fallback := 'idle'):
 	
 	# Go back to idle state
 	_play_idle()
+
+
+func my_play_animation(animation_label: String, after_anim:= '', animation_fallback := 'idle'):
+	if not has_node("AnimationPlayer"):
+		PopochiuUtils.print_error(
+			"Can't play character animation. Required AnimationPlayer not found in character %s" %
+			[script_name]
+		)
+		return
+	
+	if $AnimationPlayer.get_animation_list().is_empty():
+		return
+
+	# Search for a valid animation corresponding to animation_label
+	var animation = _get_valid_oriented_animation(animation_label)
+	# If is not present, do the same for the the fallback animation.
+	if animation == null: animation = _get_valid_oriented_animation(animation_fallback)
+	# In neither are available, exit and throw an error to check for the presence of the animations.
+	if animation == null: # Again!
+		PopochiuUtils.print_error(
+			"Neither the requested nor the fallback animation could be found for character %s.\
+ Requested: %s - Fallback: %s" % [script_name, animation_label, animation_fallback]
+		)
+		return
+	# Play the animation in the best available orientation
+	$AnimationPlayer.play(animation)
+	# If the playing is blocking, wait for the animation to finish
+	await $AnimationPlayer.animation_finished
+	
+	if !after_anim.is_empty():
+		$AnimationPlayer.play(after_anim)
 
 
 ## Makes the animation that is currently playing to stop. Works only if it is looping and is not an

@@ -1,7 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://bq4rdgicds8sy"]
+[gd_scene load_steps=10 format=3 uid="uid://bq4rdgicds8sy"]
 
 [ext_resource type="Script" path="res://game/characters/working_class_woman/character_working_class_woman.gd" id="1_x5lha"]
 [ext_resource type="Texture2D" uid="uid://diqbxvblcb5nq" path="res://assets/tex/working_class_woman/working_class_woman.png" id="2_fj7x6"]
+
+[sub_resource type="Animation" id="Animation_y77tv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_atpy3"]
 resource_name = "idle"
@@ -19,7 +34,8 @@ tracks/0/keys = {
 "values": [0, 1, 0, 1, 0, 2, 3, 0, 1, 0]
 }
 
-[sub_resource type="Animation" id="Animation_y77tv"]
+[sub_resource type="Animation" id="Animation_l6dx6"]
+resource_name = "idle_not_reading"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -31,34 +47,97 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_j52xj"]
+resource_name = "look_at_book"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 4]
+}
+
+[sub_resource type="Animation" id="Animation_olo40"]
+resource_name = "look_at_talker"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_gpt3i"]
+resource_name = "talk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 6]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n25sl"]
 _data = {
 "RESET": SubResource("Animation_y77tv"),
-"idle": SubResource("Animation_atpy3")
+"idle": SubResource("Animation_atpy3"),
+"idle_not_reading": SubResource("Animation_l6dx6"),
+"look_at_book": SubResource("Animation_j52xj"),
+"look_at_talker": SubResource("Animation_olo40"),
+"talk": SubResource("Animation_gpt3i")
 }
 
 [node name="CharacterWorkingClassWoman" type="Area2D"]
 script = ExtResource("1_x5lha")
+text_color = Color(0.521569, 0.682353, 0.945098, 1)
 popochiu_placeholder = null
 script_name = "WorkingClassWoman"
 description = "Working Class Woman"
+baseline = 25
+walk_to_point = Vector2(26, 28)
 cursor = 8
 interaction_polygon = PackedVector2Array()
 
 [node name="InteractionPolygon" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+visible = false
+position = Vector2(-0.455357, -0.910713)
+scale = Vector2(1.91071, 1.91071)
+polygon = PackedVector2Array(-10, -25, 5, -29, 18, -9, 6, 31, -7, 31, -17, 8)
 
 [node name="ScalingPolygon" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)
 
 [node name="BaselineHelper" type="Line2D" parent="."]
-points = PackedVector2Array(-10000, 0, 10000, 0)
+visible = false
+position = Vector2(0, 25)
+points = PackedVector2Array(-10000, 0, 3, 30, 10000, 0)
 width = 1.0
 
 [node name="WalkToHelper" type="Marker2D" parent="."]
+visible = false
+position = Vector2(26, 28)
 
 [node name="ColorRect" type="ColorRect" parent="WalkToHelper"]
 offset_left = -2.5
@@ -66,6 +145,7 @@ offset_top = -2.5
 offset_right = 2.5
 offset_bottom = 2.5
 color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -74,8 +154,10 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1.875, 1.875)
 texture = ExtResource("2_fj7x6")
 hframes = 7
 
 [node name="DialogPos" type="Marker2D" parent="."]
-position = Vector2(0, -25)
+visible = false
+position = Vector2(0, -63)

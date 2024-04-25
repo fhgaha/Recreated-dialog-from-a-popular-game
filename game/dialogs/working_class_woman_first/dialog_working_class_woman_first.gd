@@ -27,11 +27,13 @@ func _on_start() -> void:
 		#await fade_out()
 	#)
 	
+	#E.goto_room("End")
+	#return
+	
 	await C.player.face_clicked()
-	await C.WorkingClassWoman.say("[wave]♫ Hmm-hmm-hmm ♪[/wave]")
-
-
+	
 	if (first_time):
+		await C.WorkingClassWoman.say_no_anim("[wave]♫ Hmm-hmm-hmm ♪[/wave]")
 		update_dialog([
 			opt("agoodone", "A good one? Point at the book"),
 			opt("hello",    "Hello"),
@@ -41,10 +43,11 @@ func _on_start() -> void:
 		update_dialog([
 			opt("husbandmissing", 	"Maybe your husband missing?"),
 			opt("childrenmissing", 	"Maybe your children are missing?"),
-			opt("cockatoomissing", 	"Maybe your *cockatoo* is missing?"),
+			opt("cockatoomissing", 	"Maybe your [b]cockatoo[/b] is missing?"),
 			opt("watchbrowse", 		"Watch her browse books"),
 		])
 	
+	#await C.WorkingClassWoman.my_play_animation("look_at_talker", "idle_not_reading")
 	# (!) It MUST always use an await
 	await E.get_tree().process_frame
 
@@ -66,6 +69,7 @@ func opt(id: String, text: String, visible: bool = true) -> PopochiuDialogOption
 
 
 func _option_selected(opt: PopochiuDialogOption) -> void:
+	#await C.WorkingClassWoman.my_play_animation("look_at_talker", "idle_not_reading")
 	match opt.id:
 		"agoodone":
 			await C.WorkingClassWoman.say("Yes, hello")
@@ -155,7 +159,7 @@ func _option_selected(opt: PopochiuDialogOption) -> void:
 			await C.WorkingClassWoman.say("I haven't lost my husband")
 			update_dialog([
 				opt("childrenmissing", "Maybe your children are missing?"),
-				opt("cockatoomissing", "Maybe your *cockatoo* is missing?"),
+				opt("cockatoomissing", "Maybe your [b]cockatoo[/b] is missing?"),
 				opt("watchbrowse", "Watch her browse books"),
 			])
 		"idontcare":
@@ -192,9 +196,9 @@ func _option_selected(opt: PopochiuDialogOption) -> void:
 			])
 		"cigarettes":
 			await C.WorkingClassWoman.say("What? That's just--")
-			await C.WorkingClassWoman.say("My daughters are perfectly *fine*")
+			await C.WorkingClassWoman.say("My daughters are perfectly [shake]fine[/shake]")
 			await C.WorkingClassWoman.say("They're with their friends down in Jamrock!")
-			await C.WorkingClassWoman.say("There's *nothing* to worry about")
+			await C.WorkingClassWoman.say("There's [shake]nothing[/shake] to worry about")
 			await C.WorkingClassWoman.say("They're almost grown up now anyway")
 			await C.WorkingClassWoman.say("They're past the age they need me protecting them from everything now")
 			update_dialog([
@@ -216,14 +220,14 @@ func _option_selected(opt: PopochiuDialogOption) -> void:
 			])
 		"timtryingtobeprofessional":
 			asked_abt_children = true
-			await C.WorkingClassWoman.say("There's no *investigation* here, I can tell you that!")
+			await C.WorkingClassWoman.say("There's no [wave]investigation[/wave] here, I can tell you that!")
 			update_dialog([
-				opt("cockatoomissing", "Maybe your *cockatoo* is missing?"),
+				opt("cockatoomissing", "Maybe your [b]cockatoo[/b] is missing?"),
 				opt("watchbrowse", "Watch her browse books"),
 			])
 		"cockatoomissing":
 			asked_abt_cockatoo = true
-			await C.WorkingClassWoman.say("I don't mean to disrespect, sir, but *you* are being a bit of cocatoo here")
+			await C.WorkingClassWoman.say("I don't mean to disrespect, sir, but [b]you[/b] are being a bit of cocatoo here")
 			update_dialog([
 				opt("askingcockatoo", "Ma'am, I was asking about your cockatoo. Is it missing?"),
 				opt("wdymcockatoo", "What do you mean I'm being a cockatoo?"),	#todo
@@ -312,7 +316,11 @@ func _option_selected(opt: PopochiuDialogOption) -> void:
 		#should be always below
 		"leave", _:
 			stop()
+			
+			await E.wait(1)
+			E.goto_room("End")
 	
+	#await C.WorkingClassWoman.play_animation("look_at_book")
 	#old_thing(opt)
 	_show_options()
 

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3hiql5aoe8nv"]
+
+[ext_resource type="Script" path="res://game/rooms/end/room_end.gd" id="1_i2rlh"]
+[ext_resource type="PackedScene" uid="uid://bai3lw7eefh45" path="res://game/rooms/end/props/bg/prop_bg.tscn" id="2_0v7p0"]
+[ext_resource type="Texture2D" uid="uid://lb54hugxmmj1" path="res://assets/tex/env/black.png" id="3_hf2da"]
+[ext_resource type="PackedScene" uid="uid://cpwqo50hbv1mt" path="res://game/characters/detective/character_detective.tscn" id="4_w54cd"]
+[ext_resource type="PackedScene" uid="uid://b4xfd1ds0xu0k" path="res://game/characters/narrator/character_narrator.tscn" id="5_4pid1"]
+
+[node name="RoomEnd" type="Node2D"]
+script = ExtResource("1_i2rlh")
+script_name = "End"
+popochiu_placeholder = null
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" parent="Props" instance=ExtResource("2_0v7p0")]
+position = Vector2(160, 90)
+texture = ExtResource("3_hf2da")
+interaction_polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterDetective *" parent="Characters" instance=ExtResource("4_w54cd")]
+position = Vector2(-87, 77)
+
+[node name="CharacterNarrator *" parent="Characters" instance=ExtResource("5_4pid1")]
+position = Vector2(160, 118)

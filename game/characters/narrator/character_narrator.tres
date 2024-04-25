@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dq1hlvl2ymr46"]
+
+[ext_resource type="Script" path="res://game/characters/narrator/character_narrator_state.gd" id="1_swkf0"]
+
+[resource]
+resource_name = "Narrator"
+script = ExtResource("1_swkf0")
+script_name = "Narrator"
+scene = "res://game/characters/narrator/character_narrator.tscn"

@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://l5slqt5pr2db"]
+[gd_scene load_steps=8 format=3 uid="uid://l5slqt5pr2db"]
 
 [ext_resource type="Script" path="res://game/rooms/bookstore_front/room_bookstore_front.gd" id="1_s8ikf"]
+[ext_resource type="PackedScene" uid="uid://bb6d0jfdbpbcg" path="res://game/rooms/bookstore_front/props/bg/prop_bg.tscn" id="2_3eecd"]
 [ext_resource type="PackedScene" uid="uid://cpwqo50hbv1mt" path="res://game/characters/detective/character_detective.tscn" id="2_bjsxo"]
 [ext_resource type="PackedScene" uid="uid://bq4rdgicds8sy" path="res://game/characters/working_class_woman/character_working_class_woman.tscn" id="3_v3fid"]
+[ext_resource type="Texture2D" uid="uid://boccadhqm5mp3" path="res://assets/tex/env/bg2.png" id="3_vn25x"]
+[ext_resource type="PackedScene" uid="uid://l37p3u1tg7kd" path="res://game/rooms/bookstore_front/props/fore/prop_fore.tscn" id="4_sc758"]
+[ext_resource type="Texture2D" uid="uid://bky3cqout5xsf" path="res://assets/tex/env/fore.png" id="5_jo4x8"]
 
 [node name="RoomBookstoreFront" type="Node2D"]
 script = ExtResource("1_s8ikf")
@@ -13,6 +17,19 @@ popochiu_placeholder = null
 
 [node name="Props" type="Node2D" parent="."]
 
+[node name="Fore" parent="Props" instance=ExtResource("4_sc758")]
+position = Vector2(160, 112)
+scale = Vector2(1, 0.855)
+texture = ExtResource("5_jo4x8")
+baseline = 87
+always_on_top = true
+interaction_polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+
+[node name="Bg" parent="Props" instance=ExtResource("2_3eecd")]
+position = Vector2(160, 90)
+texture = ExtResource("3_vn25x")
+interaction_polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+
 [node name="Hotspots" type="Node2D" parent="."]
 
 [node name="Regions" type="Node2D" parent="."]
@@ -22,7 +39,7 @@ popochiu_placeholder = null
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="CharacterDetective *" parent="Characters" instance=ExtResource("2_bjsxo")]
-position = Vector2(237, 117)
+position = Vector2(229, 117)
 
 [node name="CharacterWorkingClassWoman *" parent="Characters" instance=ExtResource("3_v3fid")]
-position = Vector2(97, 117)
+position = Vector2(96, 120)

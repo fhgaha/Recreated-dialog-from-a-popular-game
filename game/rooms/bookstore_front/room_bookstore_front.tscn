@@ -22,7 +22,7 @@ popochiu_placeholder = null
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="CharacterDetective *" parent="Characters" instance=ExtResource("2_bjsxo")]
-position = Vector2(259, 115)
+position = Vector2(237, 117)
 
 [node name="CharacterWorkingClassWoman *" parent="Characters" instance=ExtResource("3_v3fid")]
 position = Vector2(97, 117)

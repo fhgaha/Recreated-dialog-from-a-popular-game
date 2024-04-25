@@ -1,7 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpwqo50hbv1mt"]
+[gd_scene load_steps=6 format=3 uid="uid://cpwqo50hbv1mt"]
 
 [ext_resource type="Script" path="res://game/characters/detective/character_detective.gd" id="1_mu0er"]
-[ext_resource type="Texture2D" uid="uid://dd1ruw521xok1" path="res://assets/tex/detective/detective_placeholder.png" id="2_511a7"]
+[ext_resource type="Texture2D" uid="uid://bemmuhia8pcdb" path="res://assets/tex/detective/det.png" id="2_un1t3"]
+
+[sub_resource type="Animation" id="Animation_fgj85"]
+resource_name = "idle"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.3, 4.4, 10.2, 11.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_cps0r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ud81n"]
+_data = {
+"RESET": SubResource("Animation_cps0r"),
+"idle": SubResource("Animation_fgj85")
+}
 
 [node name="CharacterDetective" type="Area2D"]
 script = ExtResource("1_mu0er")
@@ -35,10 +72,14 @@ offset_bottom = 2.5
 color = Color(0, 1, 1, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ud81n")
+}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_511a7")
+texture = ExtResource("2_un1t3")
+hframes = 5
 
 [node name="DialogPos" type="Marker2D" parent="."]
 visible = false

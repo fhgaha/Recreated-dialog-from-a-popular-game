@@ -23,14 +23,14 @@ func _on_room_transition_finished() -> void:
 	
 	#await E.wait(0.5)
 	E.text_speed = 1.2
-	#PopochiuGlobals.ignore_click = true
+	PopochiuGlobals.ignore_click = true
 	await C.Narrator.say("[center][font=%s][color=%s]%s[/color][/font][/center]" 
 	% [PopochiuGlobals.ANTIQUITY_PRINT, "#35b7a0", PopochiuGlobals.game_name])
 	
 	#await C.Narrator.say("[center][font=%s]%s[/font][/center]" 
 	#% [PopochiuGlobals.ANTIQUITY_PRINT, PopochiuGlobals.game_name])
 	
-	#PopochiuGlobals.ignore_click = false
+	PopochiuGlobals.ignore_click = false
 	E.text_speed = PopochiuConfig.get_text_speed()
 	
 	await E.wait(0.5)

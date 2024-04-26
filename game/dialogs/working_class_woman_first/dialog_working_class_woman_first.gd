@@ -308,6 +308,7 @@ func _option_selected(opt: PopochiuDialogOption) -> void:
 			await ignore_click_while(func():
 				await fade_out()
 			)
+			
 			await C.WorkingClassWoman.say("Right, uh...")
 			update_dialog([
 				opt("leave", "That's all for a moment. I'll let you read [Leave]")
@@ -335,12 +336,14 @@ func turn_off_opts_all():
 func fade_in() -> void:
 	var canv = E.find_child("TransitionsLayer") as CanvasLayer
 	canv.layer = 9
+	A.mx_sad.stop(1)
 	await E.play_transition(PopochiuTransitionLayer.FADE_IN, 1)
 
 
 func fade_out() -> void:
 	var canv = E.find_child("TransitionsLayer") as CanvasLayer
 	canv.layer = 10
+	A.mx_sad.play(1, 10)
 	await E.play_transition(PopochiuTransitionLayer.FADE_OUT, 1)
 
 

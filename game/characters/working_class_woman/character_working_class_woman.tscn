@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bq4rdgicds8sy"]
+[gd_scene load_steps=12 format=3 uid="uid://bq4rdgicds8sy"]
 
 [ext_resource type="Script" path="res://game/characters/working_class_woman/character_working_class_woman.gd" id="1_x5lha"]
+[ext_resource type="Resource" uid="uid://cbxs5230k43sr" path="res://game/characters/working_class_woman/audio/vo_woman2.tres" id="2_83lpt"]
 [ext_resource type="Texture2D" uid="uid://diqbxvblcb5nq" path="res://assets/tex/working_class_woman/working_class_woman.png" id="2_fj7x6"]
+[ext_resource type="Resource" uid="uid://brg42m4qg10i0" path="res://game/characters/working_class_woman/audio/vo_woman3.tres" id="3_v8hjn"]
 
 [sub_resource type="Animation" id="Animation_y77tv"]
 length = 0.001
@@ -112,6 +114,10 @@ _data = {
 [node name="CharacterWorkingClassWoman" type="Area2D"]
 script = ExtResource("1_x5lha")
 text_color = Color(0.521569, 0.682353, 0.945098, 1)
+voices = [{
+"emotion": "",
+"variations": Array[Resource("res://addons/popochiu/engine/audio_manager/audio_cue_sound.gd")]([ExtResource("2_83lpt"), ExtResource("3_v8hjn")])
+}]
 popochiu_placeholder = null
 script_name = "WorkingClassWoman"
 description = "Working Class Woman"

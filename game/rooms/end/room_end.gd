@@ -17,11 +17,9 @@ func _on_room_entered() -> void:
 # is visible.
 func _on_room_transition_finished() -> void:
 	# You can use await E.queue([]) to excecute a sequence of instructions
-	const ANTIQUITY_PRINT = "res://assets/fonts/antiquity-print.ttf"
-	var green = "#5d946e"
-	var game_name = "A Recreated Dialog from a Popular Game with an Unnecessary Long Name"
 	await E.wait(0.5)
-	await C.Narrator.say("Thanks for playing\n[font=%s][color=%s]%s[/color][/font]" % [ANTIQUITY_PRINT, green, game_name])
+	await C.Narrator.say("[center]Thanks for playing[/center]\n\n[font=%s][color=%s]%s[/color][/font]" 
+	% [PopochiuGlobals.ANTIQUITY_PRINT, PopochiuGlobals.green, PopochiuGlobals.game_name])
 	pass
 
 # What happens before Popochiu unloads the room.

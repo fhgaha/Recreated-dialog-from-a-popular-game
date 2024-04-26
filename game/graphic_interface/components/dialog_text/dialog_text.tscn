@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://beq4sitv2m70f"]
 
-[ext_resource type="Theme" uid="uid://dpequqav4rjaf" path="" id="1_a8byx"]
+[ext_resource type="Theme" uid="uid://dpequqav4rjaf" path="res://addons/popochiu/engine/objects/graphic_interface/resources/popochiu_theme.tres" id="1_a8byx"]
 [ext_resource type="FontFile" uid="uid://bc02kk516ymif" path="res://game/graphic_interface/fonts/monkeyisland_1991.ttf" id="2_i7sr0"]
 [ext_resource type="Script" path="res://game/graphic_interface/components/dialog_text/dialog_text.gd" id="3_wjof6"]
 [ext_resource type="Texture2D" uid="uid://da8550eu8kkyh" path="res://game/graphic_interface/components/dialog_text/dialog_continue.png" id="4_khfg5"]
@@ -32,7 +32,6 @@ mouse_filter = 2
 theme = ExtResource("1_a8byx")
 
 [node name="AboveCharacterText" type="RichTextLabel" parent="."]
-visible = false
 clip_contents = false
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="AudioCueSound" load_steps=3 format=3 uid="uid://brg42m4qg10i0"]
+
+[ext_resource type="AudioStream" uid="uid://dlji47p5ij8p5" path="res://game/characters/working_class_woman/audio/vo_woman3.mp3" id="1_35ida"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/audio_manager/audio_cue_sound.gd" id="2_snmqq"]
+
+[resource]
+resource_name = "vo_woman3"
+script = ExtResource("2_snmqq")
+audio = ExtResource("1_35ida")
+loop = false
+is_2d = false
+can_play_simultaneous = true
+pitch = 1.0
+volume = 0.0
+rnd_pitch = Vector2(0, 0)
+rnd_volume = Vector2(0, 0)
+max_distance = 2000
+bus = "Master"

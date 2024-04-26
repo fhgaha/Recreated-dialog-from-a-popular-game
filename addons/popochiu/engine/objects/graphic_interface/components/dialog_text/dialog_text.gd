@@ -59,6 +59,7 @@ func _input(event: InputEvent) -> void:
 	
 	if PopochiuUtils.get_click_or_touch_index(event) != MOUSE_BUTTON_LEFT:
 		return
+
 	
 	if visible_ratio == 1.0:
 		disappear()

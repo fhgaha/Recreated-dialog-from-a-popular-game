@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="AudioCueMusic" load_steps=3 format=3 uid="uid://cb8dl7myiei2s"]
+
+[ext_resource type="AudioStream" uid="uid://bmee1c2pvdjd3" path="res://game/rooms/start/audio/mx_sad.mp3" id="1_h4xjd"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/audio_manager/audio_cue_music.gd" id="2_u6u4x"]
+
+[resource]
+resource_name = "mx_sad"
+script = ExtResource("2_u6u4x")
+audio = ExtResource("1_h4xjd")
+loop = true
+is_2d = false
+can_play_simultaneous = false
+pitch = 1.0
+volume = -8.0
+rnd_pitch = Vector2(0, 0)
+rnd_volume = Vector2(0, 0)
+max_distance = 2000
+bus = "Master"

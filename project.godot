@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Adv5"
-run/main_scene="res://game/rooms/bookstore_front/room_bookstore_front.tscn"
+run/main_scene="res://game/rooms/start/room_start.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -60,3 +60,4 @@ popochiu-skip={
 [popochiu]
 
 pixel/pixel_art_textures=true
+dialogs/text_speed=0.1
